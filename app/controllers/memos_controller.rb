@@ -4,7 +4,11 @@ class MemosController < ApplicationController
   # GET /memos
   # GET /memos.json
   def index
-    @memos = Memo.all
+    if loggen_in?
+      @memos = Memo.all
+    else
+      redirect_to new_session_path
+    end
   end
 
   # GET /memos/1
@@ -14,7 +18,11 @@ class MemosController < ApplicationController
 
   # GET /memos/new
   def new
-    @memo = Memo.new
+    if loggen_in?
+      @memo = Memo.new
+    else
+      redirect_to new_session_path
+    end
   end
 
   # GET /memos/1/edit
@@ -25,6 +33,7 @@ class MemosController < ApplicationController
   # POST /memos.json
   def create
     @memo = Memo.new(memo_params)
+    @memo.user = current_user
 
     respond_to do |format|
       if @memo.save
