@@ -5,7 +5,7 @@ class MemosController < ApplicationController
   # GET /memos.json
   def index
     if loggen_in?
-      @memos = Memo.all
+      @memos = current_user.memos
     else
       redirect_to new_session_path
     end
