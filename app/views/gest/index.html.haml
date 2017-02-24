@@ -5,6 +5,7 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
+      %th= 'ユーザー名'
       %th= model_class.human_attribute_name(:title)
       %th= model_class.human_attribute_name(:body)
       %th= model_class.human_attribute_name(:created_at)
@@ -12,6 +13,7 @@
     - @memos.each do |memo|
       %tr
         %td= link_to memo.id, memo_path(memo)
+        %td= memo.user.name
         %td= memo.title
         %td= memo.body
         %td= l memo.created_at
