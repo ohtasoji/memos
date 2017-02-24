@@ -14,6 +14,7 @@ class MemosController < ApplicationController
   # GET /memos/1
   # GET /memos/1.json
   def show
+    @comments = Comment.where(memo_id: params[:id])
   end
 
   # GET /memos/new
