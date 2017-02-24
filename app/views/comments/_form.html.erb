@@ -15,6 +15,9 @@
     <%= f.label :sentence %>
     <%= f.text_area :sentence %>
   </div>
+  <div class="field">
+    <%= f.hidden_field :memo_id , :value => params[:memo_id] %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
