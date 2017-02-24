@@ -38,6 +38,7 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             -if loggen_in?
+              %li= link_to "すべてのメモを見る",gest_index_path
               %li= link_to "ログアウト", session_path, method: :delete
               %li= link_to current_user.name, root_path
               %li= link_to t('.new', default: t("helpers.links.new")), new_memo_path

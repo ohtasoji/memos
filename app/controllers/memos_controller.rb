@@ -32,6 +32,9 @@ class MemosController < ApplicationController
 
   # GET /memos/1/edit
   def edit
+    if current_user.id != @memo.user_id
+      redirect_to root_path, notice: '自分のものしか編集できないよ'
+    end
   end
 
   # POST /memos
@@ -68,10 +71,14 @@ class MemosController < ApplicationController
   # DELETE /memos/1
   # DELETE /memos/1.json
   def destroy
-    @memo.destroy
-    respond_to do |format|
-      format.html { redirect_to memos_url, notice: 'Memo was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @memo.user_id
+      @memo.destroy
+      respond_to do |format|
+        format.html { redirect_to memos_url, notice: 'Memo was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, notice: '自分のメモしか削除できないよ'
     end
   end
 
