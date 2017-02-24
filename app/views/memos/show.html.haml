@@ -1,6 +1,7 @@
 - model_class = Memo
 .page-header
   %h1= t '.title', :default => model_class.model_name.human.titleize
+  =image_tag @memo.image
 %dl.dl-horizontal
   %dt
     %strong
