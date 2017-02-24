@@ -20,7 +20,7 @@
   %tbody
     - @comments.each do |comment|
       %tr
-        %td=comment.user_id
+        %td=comment.user.name
         %td=comment.sentence
 = link_to t('.back', :default => t("helpers.links.back")), memos_path, :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_memo_path(@memo), :class => 'btn btn-default'

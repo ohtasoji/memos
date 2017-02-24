@@ -17,7 +17,7 @@ class MemosController < ApplicationController
     if loggen_in?
       @comments = Comment.where(memo_id: params[:id])
     else
-      redirect_to gest_index_path,notice: 'ログインしてからコメントしてね.'
+      redirect_to gest_index_path,notice: 'まずはログインしてみてね'
     end
   end
 
