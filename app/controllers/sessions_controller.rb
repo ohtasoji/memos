@@ -13,14 +13,14 @@ class SessionsController < ApplicationController
       redirect_to root_path, alert: 'Login failed'
     end
   end
-  
+
   def destroy
     reset_session
     # session.destroy
     if session[:user_id]
         redirect_to root_path, notice: 'session was not destroyed.'
     else
-        redirect_to root_path, notice: 'session was successfully destroyed.'
+        redirect_to gest_index_path, notice: 'session was successfully destroyed.'
     end
   end
 end

@@ -7,14 +7,18 @@ class MemosController < ApplicationController
     if loggen_in?
       @memos = current_user.memos
     else
-      redirect_to new_session_path
+      redirect_to gest_index_path
     end
   end
 
   # GET /memos/1
   # GET /memos/1.json
   def show
-    @comments = Comment.where(memo_id: params[:id])
+    if loggen_in?
+      @comments = Comment.where(memo_id: params[:id])
+    else
+      redirect_to gest_index_path,notice: 'ログインしてからコメントしてね.'
+    end
   end
 
   # GET /memos/new
@@ -22,7 +26,7 @@ class MemosController < ApplicationController
     if loggen_in?
       @memo = Memo.new
     else
-      redirect_to new_session_path
+      redirect_to gest_index_path
     end
   end
 

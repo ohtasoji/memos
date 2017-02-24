@@ -1,0 +1,17 @@
+- model_class = Memo
+.page-header
+  %h1= t '.titles', default: model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:body)
+      %th= model_class.human_attribute_name(:created_at)
+  %tbody
+    - @memos.each do |memo|
+      %tr
+        %td= link_to memo.id, memo_path(memo)
+        %td= memo.title
+        %td= memo.body
+        %td= l memo.created_at
